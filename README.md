@@ -6,6 +6,7 @@ sudo apt update
 sudo apt install libmysqlcppconn-dev
 sudo apt install libmysqlclient-dev
 sudo apt install libasio-dev
+sudo apt install libyaml-cpp-dev
 
 1. git submoudule update --init --recursive
 2. cd ./backend/Crow

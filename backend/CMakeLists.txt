@@ -28,10 +28,14 @@ include_directories(${CMAKE_SOURCE_DIR}/Crow/include)
 # 查找并链接 jwt-cpp 和 OpenSSL
 find_package(jwt-cpp CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 # 明确指定 jwt-cpp 的头文件路径
 include_directories("./vcpkg/installed/x64-linux/include")
 link_directories("./vcpkg/installed/x64-linux/lib")
+
+# 指定 yaml-cpp 的头文件路径
+include_directories(${YAML_CPP_INCLUDE_DIR})
 
 # 本项目的头文件路径
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -52,5 +56,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 target_link_libraries(${PROJECT_NAME} PRIVATE mysqlclient)
 # 如果使用 MySQL Connector/C++，还需要链接它
 target_link_libraries(${PROJECT_NAME} PRIVATE mysqlcppconn)
+# 链接 yaml-cpp 库
+target_link_libraries(${PROJECT_NAME} PRIVATE yaml-cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
